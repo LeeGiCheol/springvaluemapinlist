@@ -5,6 +5,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -15,8 +16,11 @@ public class Runner implements ApplicationRunner {
     @Value("#{${myMapProperties}}")
     private Map<String, List<String>> myMapProperties;
 
-    @Value("#{${myMapYml}}")
-    private Map<String, List<String>> myMapYml;
+    private final Map<String, List<String>> myMapYml = new HashMap<>();
+
+    public Runner(Map<String, List<String>> myMapProperties) {
+        this.myMapProperties = myMapProperties;
+    }
 
 
     @Override
